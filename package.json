@@ -11,7 +11,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:start": "npx http-server storybook-static --ci -p 9001",
-    "storybook:screenshot": "storycap http://127.0.0.1:9001 --disableCssAnimation false -C puppeteer --serverCmd \"yarn storybook:start\"",
+    "storybook:screenshot": "storycap http://127.0.0.1:9001 --disableCssAnimation false -C puppeteer --serverCmd \"npm storybook:start\"",
     "test:vrt": "reg-suit run"
   },
   "dependencies": {

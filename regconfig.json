@@ -10,7 +10,7 @@
     "plugins": {
       "reg-keygen-git-hash-plugin": true,
       "reg-notify-github-plugin": {
-        "clientId": "Mzc0NTW2MDMx1y8rKtEtzyzJ0E0HEqVJusWJuQU5qfomxuamJsZmxvoliclFqeUA",
+        "clientId": "M7c0MzM3M7I01y8rKtEtzyzJ0E0HEqVJusWJuQU5qbq5iZl5+qYGRmbmppaG+uX5RdmGhkYGAA==",
         "prComment": true,
         "prCommentBehavior": "new",
         "setCommitStatus": false,
