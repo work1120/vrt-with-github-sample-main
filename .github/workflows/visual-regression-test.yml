@@ -56,26 +56,26 @@ jobs:
           fetch-depth: 0
 
       - name: restore cached expected screenshots
-        id: screenshots_cache
+        id: screenshots_expected_cache
         uses: ./.github/actions/cache-screenshots
         with:
           lookup-only: 'false'
 
       - name: restore cached node_modules
-        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.screenshots_expected_cache.outputs.cache-hit != 'true' }}
         uses: ./.github/actions/cache-node-modules
 
       - name: cache storybook build result
-        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.screenshots_expected_cache.outputs.cache-hit != 'true' }}
         id: storybook_result_cache
         uses: ./.github/actions/cache-storybook-build-result
 
       - name: prepare for screenshots
-        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.screenshots_expected_cache.outputs.cache-hit != 'true' }}
         uses: ./.github/actions/prepare-screenshots
 
       - name: take screenshots
-        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.screenshots_expected_cache.outputs.cache-hit != 'true' }}
         run: npm run storybook:screenshot --shard=${{ matrix.shard }}
 
       - name: upload screenshots
@@ -135,7 +135,7 @@ jobs:
 
       - name: workaround for detached HEAD
         run: |
-          git checkout main || git checkout -b main && git pull
+          git checkout ${GITHUB_HEAD_REF#refs/heads/} || git checkout -b ${GITHUB_HEAD_REF#refs/heads/} && git pull
 
       - name: restore cached actual screenshots
         id: screenshots_cache
@@ -240,5 +240,5 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             reg-suit report
-            https://work1120.github.io/vrt-with-github-sample-main/${{github.head_ref}}
+            https://work1120.github.io/vrt-with-github-sample/${{github.head_ref}}
           edit-mode: replace
