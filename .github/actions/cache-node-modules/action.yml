@@ -12,5 +12,5 @@ runs:
         key: ${{ runner.os }}-nodejs-${{ hashFiles('**/yarn.lock') }}
     - if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
       name: install node_modules
-      run: yarn install --frozen-lockfile
+      run: npm install --frozen-lockfile
       shell: bash
