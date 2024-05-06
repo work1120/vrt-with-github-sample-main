@@ -4,7 +4,7 @@ runs:
   using: 'composite'
   steps:
     - name: download chromium
-      run: npm download:chromium
+      run: yarn download:chromium
       shell: bash
 
     - name: install native dependencies
