@@ -29,6 +29,15 @@ jobs:
         with:
           lookup-only: 'false'
 
+      - name: restore cached node_modules
+        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
+        uses: ./.github/actions/cache-node-modules
+
+      - name: cache storybook build result
+        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
+        id: storybook_result_cache
+        uses: ./.github/actions/cache-storybook-build-result
+
       - name: prepare for screenshots
         if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
         uses: ./.github/actions/prepare-screenshots
