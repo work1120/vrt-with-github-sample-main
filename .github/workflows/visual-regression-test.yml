@@ -20,22 +20,22 @@ jobs:
           fetch-depth: 0
 
       - name: restore cached expected screenshots
-        id: screenshots_cache
+        id: screenshots_expected_cache
         uses: ./.github/actions/cache-screenshots
         with:
           lookup-only: 'true'
 
       - name: restore cached node_modules
-        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.screenshots_expected_cache.outputs.cache-hit != 'true' }}
         uses: ./.github/actions/cache-node-modules
 
       - name: cache storybook build result
-        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.screenshots_expected_cache.outputs.cache-hit != 'true' }}
         id: storybook_result_cache
         uses: ./.github/actions/cache-storybook-build-result
 
       - name: storybook build
-        if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' && steps.storybook_result_cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.screenshots_expected_cache.outputs.cache-hit != 'true' && steps.storybook_result_cache.outputs.cache-hit != 'true' }}
         run: npm run storybook:build
         env:
           NEXT_IS_TEST: 'true'
