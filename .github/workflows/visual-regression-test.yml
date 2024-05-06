@@ -168,6 +168,9 @@ jobs:
           retention-days: 1
 
   run_reg_suit:
+    needs:
+      - take_expected_screenshots
+      - take_actual_screenshots
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -188,7 +191,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: expected-screenshots
-          path: ./__screenshots__
+          path: __screenshots__
 
       - name: set reg-suit expected
         if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
