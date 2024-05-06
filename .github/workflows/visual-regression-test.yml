@@ -188,7 +188,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: expected-screenshots
-          path: __screenshots__
+          path: ./__screenshots__
 
       - name: set reg-suit expected
         if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
