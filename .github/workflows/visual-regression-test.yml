@@ -36,7 +36,7 @@ jobs:
 
       - name: storybook build
         if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' && steps.storybook_result_cache.outputs.cache-hit != 'true' }}
-        run: npm storybook:build
+        run: npm run storybook:build
         env:
           NEXT_IS_TEST: 'true'
 
@@ -76,7 +76,7 @@ jobs:
 
       - name: take screenshots
         if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
-        run: npm storybook:screenshot --shard=${{ matrix.shard }}
+        run: npm run storybook:screenshot --shard=${{ matrix.shard }}
 
       - name: upload screenshots
         uses: actions/upload-artifact@v3
@@ -115,7 +115,7 @@ jobs:
 
       - name: storybook build
         if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' && steps.storybook_result_cache.outputs.cache-hit != 'true' }}
-        run: npm storybook:build
+        run: npm run storybook:build
         env:
           NEXT_IS_TEST: 'true'
 
@@ -158,7 +158,7 @@ jobs:
 
       - name: take screenshots
         if: ${{ steps.screenshots_cache.outputs.cache-hit != 'true' }}
-        run: npm storybook:screenshot --shard=${{ matrix.shard }}
+        run: npm run storybook:screenshot --shard=${{ matrix.shard }}
 
       - name: upload screenshots
         uses: actions/upload-artifact@v3
@@ -216,7 +216,7 @@ jobs:
           git checkout ${GITHUB_HEAD_REF#refs/heads/} || git checkout -b ${GITHUB_HEAD_REF#refs/heads/} && git pull
 
       - name: run reg-suit
-        run: npm test:vrt
+        run: npm run test:vrt
 
       - name: deploy report to github page
         uses: peaceiris/actions-gh-pages@v3
