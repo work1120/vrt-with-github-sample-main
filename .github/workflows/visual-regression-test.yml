@@ -168,9 +168,6 @@ jobs:
           retention-days: 1
 
   run_reg_suit:
-    needs:
-      - take_expected_screenshots
-      - take_actual_screenshots
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
